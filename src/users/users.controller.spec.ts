@@ -45,4 +45,19 @@ describe('Users Controller', () => {
       expect(await usersController.findAll()).toBe(result);
     });
   });
+  describe('findOne user by id', () => {
+    it('should return an user', async () => {
+      const result = {
+        name: 'test1',
+        family: 'test1',
+        age: 21,
+      };
+
+      jest
+        .spyOn(usersService, 'findOne')
+        .mockImplementation(async () => result);
+
+      expect(await usersController.findOne('test1')).toBe(result);
+    });
+  });
 });
